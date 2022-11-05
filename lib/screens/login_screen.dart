@@ -53,13 +53,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const Gap(24),
                 Container(
-                  height: 250,
+                  height: 160,
                   decoration: const BoxDecoration(
                     color: Colors.transparent,
                     // borderRadius: BorderRadius.all(Radius.circular(30)),
                     image: DecorationImage(
                       image: AssetImage('assets/images/login.jpg'),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   ),
                 ),
-                const Gap(24),
+                const Gap(8),
                 SizedBox(
                   height: 55,
                   width: double.infinity,

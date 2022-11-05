@@ -22,7 +22,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(
-                  height: 300,
+                  height: 200,
                   child: Image(
                     image: AssetImage("assets/images/checkout.jpg"),
                   ),
