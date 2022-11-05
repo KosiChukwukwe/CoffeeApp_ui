@@ -32,7 +32,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
               ),
-              const Gap(50),
+              const Gap(30),
               const Center(
                 child: Text(
                   'Coffee has never',
@@ -64,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const Gap(40),
+              const Gap(30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

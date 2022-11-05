@@ -59,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                         ),
-                        const Gap(20),
+                        const Gap(10),
                         TextFormField(
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -67,7 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             hintText: 'Enter Email Address',
                           ),
                         ),
-                        const Gap(20),
+                        const Gap(10),
                         TextFormField(
                           obscureText: true,
                           decoration: const InputDecoration(
@@ -76,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             hintText: 'Enter Password',
                           ),
                         ),
-                        const Gap(20),
+                        const Gap(10),
                         TextFormField(
                           obscureText: true,
                           decoration: const InputDecoration(
@@ -105,9 +105,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const Gap(8),
                         Center(
                           child: Text(
-                            'By clicking this button,\nYou agree to our terms & conditions',
+                            'By clicking this button, you agree to our terms & conditions',
                             style: TextStyle(
-                              fontSize: 11,
+                              fontSize: 10,
                               color: Colors.black.withOpacity(0.5),
                             ),
                             textAlign: TextAlign.center,),

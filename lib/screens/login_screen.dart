@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.black.withOpacity(0.6),
                   ),
                 ),
-                const Gap(24),
+                const Gap(10),
                 Container(
                   height: 160,
                   decoration: const BoxDecoration(
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const Gap(25),
+                const Gap(16),
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Enter Email Address',
                   ),
                 ),
-                const Gap(20),
+                const Gap(10),
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Enter Password',
                   ),
                 ),
-                const Gap(10),
+                const Gap(4),
                 Align(
                   alignment: Alignment.topRight,
                   child: TextButton(
@@ -97,7 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   ),
                 ),
-                const Gap(8),
                 SizedBox(
                   height: 55,
                   width: double.infinity,
