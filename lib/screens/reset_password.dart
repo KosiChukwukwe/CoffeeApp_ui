@@ -88,12 +88,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
-                      await auth.confirmResetPassword(
-                          code: codeController.text,
-                          newPassword: newPasswordController.text);
+                      // await auth.confirmResetPassword(
+                      //     code: codeController.text,
+                      //     newPassword: newPasswordController.text);
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LoginScreen()));
+                          MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.brown,

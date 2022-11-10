@@ -72,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const RegisterScreen()));
+                          MaterialPageRoute(builder: (context) => RegisterScreen()));
                     },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.brown)),
@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LoginScreen()));
+                          MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.brown)),

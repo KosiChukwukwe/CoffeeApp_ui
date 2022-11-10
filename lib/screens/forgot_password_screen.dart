@@ -54,9 +54,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 const Gap(12),
                 Center(
                   child: Text(
-                    'Don\'t worry, it happens. Please enter the \nEmail address associated with your account \nto receive password reset instruction.',
+                    'Don\'t worry, it happens. Please enter the \nEmail address associated with your account \nto receive password reset instruction.\nDo well to also check your spam folder for the email. ',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.black.withOpacity(0.8),
                     ),
                     textAlign: TextAlign.center,
@@ -71,7 +71,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     hintText: 'Enter Email Address',
                   ),
                 ),
-                const Gap(40),
+                const Gap(30),
                 SizedBox(
                   height: 55,
                   width: double.infinity,
@@ -80,7 +80,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       await auth.resetPassword(email: emailController.text);
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LoginScreen()));
+                          MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.brown,
