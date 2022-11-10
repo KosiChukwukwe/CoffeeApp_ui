@@ -62,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const Gap(24),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:  [
                       SizedBox(
                         height: 160,
@@ -89,7 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      const Gap(16),
                       SizedBox(
                         height: 160,
                         width: 150,
@@ -119,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const Gap(10),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:  [
                       SizedBox(
                         height: 180,
@@ -145,7 +146,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      const Gap(16),
                       SizedBox(
                         height: 180,
                         width: 150,
