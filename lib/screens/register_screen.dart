@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:week6_tast_two/screens/login_screen.dart';
 
+import '../logic/auth.dart';
+
 
 
 class RegisterScreen extends StatefulWidget {
@@ -12,6 +14,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  Auth auth = Auth();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const Gap(16),
                         Container(
-                          height: 140,
+                          height: 160,
                           decoration: const BoxDecoration(
                             color: Colors.transparent,
                             //borderRadius: BorderRadius.all(Radius.circular(40)),
@@ -59,8 +65,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                         ),
-                        const Gap(10),
+                        const Gap(20),
                         TextFormField(
+                          controller: emailController,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Email Address',
@@ -69,6 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const Gap(10),
                         TextFormField(
+                          controller: passwordController,
                           obscureText: true,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -76,13 +84,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             hintText: 'Enter Password',
                           ),
                         ),
-                        const Gap(10),
-                        TextFormField(
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Confirm Password',
-                            hintText: 'Enter Password again',
+                        const Gap(4),
+                        Text(
+                          'Password must contain at least 6 characters',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            color: Colors.black.withOpacity(0.4),
                           ),
                         ),
                         const Gap(20),
@@ -90,7 +98,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 55,
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
+                              await auth.register(
+                                email: emailController.text,
+                                password: passwordController.text,);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => const LoginScreen()));
@@ -102,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: const Text("Register"),
                           ),
                         ),
-                        const Gap(8),
+                        const Gap(10),
                         Center(
                           child: Text(
                             'By clicking this button, you agree to our terms & conditions',

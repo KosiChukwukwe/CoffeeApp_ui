@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:week6_tast_two/screens/login_screen.dart';
+import 'package:week6_tast_two/screens/reset_password.dart';
+
+import '../logic/auth.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -10,6 +13,8 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  TextEditingController emailController = TextEditingController();
+  Auth auth = Auth();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +25,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Gap(48),
+                IconButton(
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.brown,
+                    )),
                 const SizedBox(
-                  height: 300,
+                  height: 200,
                   child: Image(
                     image: AssetImage("assets/images/forgotpassword.png"),
                   ),
@@ -50,6 +64,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 const Gap(30),
                 TextFormField(
+                  controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email Address',
@@ -61,7 +76,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 55,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      await auth.resetPassword(email: emailController.text);
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const LoginScreen()));

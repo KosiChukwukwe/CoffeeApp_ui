@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "986345945432",
+    "project_id": "coffeeapp-94927",
+    "storage_bucket": "coffeeapp-94927.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986345945432:android:b4b77dd406597101434d2d",
+        "android_client_info": {
+          "package_name": "com.example.week6_tast_two"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "986345945432-bcgdm5i6e4sctd91mgu369m1nk5vtuo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBurm3WeKwyVLWLsQarh5Gk8vTS1zHbzf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "986345945432-bcgdm5i6e4sctd91mgu369m1nk5vtuo2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "986345945432-5udlcsk556jd1jerkih472vvcmv6ovs6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.week6TastTwo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

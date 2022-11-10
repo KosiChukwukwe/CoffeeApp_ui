@@ -4,6 +4,8 @@ import 'package:week6_tast_two/screens/forgot_password_screen.dart';
 import 'package:week6_tast_two/screens/home_screen.dart';
 import 'package:week6_tast_two/screens/register_screen.dart';
 
+import '../logic/auth.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -12,6 +14,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  Auth auth = Auth();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const Gap(16),
                 TextFormField(
+                  controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email Address',
@@ -73,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const Gap(10),
                 TextFormField(
+                  controller: passwordController,
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -101,7 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 55,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      await auth.login(
+                        email: emailController.text,
+                        password: passwordController.text,);
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const HomeScreen()));
