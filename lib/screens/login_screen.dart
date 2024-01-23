@@ -202,7 +202,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.white,
                               strokeWidth: 1.5,
                             )
-                          : const Text("Login"),
+                          : const Text(
+                              "Login",
+                              style: TextStyle(color: Colors.white),
+                            ),
                     ),
                   ),
                   Row(

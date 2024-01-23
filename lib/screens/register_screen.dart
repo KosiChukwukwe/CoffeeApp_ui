@@ -185,7 +185,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white,
                               strokeWidth: 1.5,
                             )
-                          : const Text("Register"),
+                          : const Text(
+                              "Register",
+                              style: TextStyle(color: Colors.white),
+                            ),
                     ),
                   ),
                   const Gap(10),

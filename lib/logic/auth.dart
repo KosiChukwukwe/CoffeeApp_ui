@@ -3,49 +3,50 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:week6_tast_two/utils/failure.dart';
 
-class Auth{
+class Auth {
+  FirebaseAuth auth = FirebaseAuth.instance;
 
-FirebaseAuth auth = FirebaseAuth.instance;
-Future<UserCredential> register ({ required String email, required String password}) async{
-  try{
-    final user = auth.createUserWithEmailAndPassword(email: email, password: password);
-    return user;
-  } on FirebaseAuthException{
-    throw Failure(message: "Firebase Authentication failed.");
-  } on SocketException{
-    throw Failure(message: "You're not connected to the internet. ");
+  Future<UserCredential> register(
+      {required String email, required String password}) async {
+    try {
+      final user =
+          auth.createUserWithEmailAndPassword(email: email, password: password);
+      return user;
+    } on FirebaseAuthException {
+      throw Failure(message: "Firebase Authentication failed.");
+    } on SocketException {
+      throw Failure(message: "You're not connected to the internet. ");
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
   }
-  catch(e){
-    throw Failure(message: e.toString());
-  }
-}
 
-Future<UserCredential> login ({required String email, required String password}) async{
-  try{
-    final user = auth.signInWithEmailAndPassword(email: email, password: password);
-    return user;
-  } on FirebaseAuthException{
-    throw Failure(message: "Firebase Authentication failed.");
-  } on SocketException{
-    throw Failure(message: "You're not connected to the internet. ");
+  Future<UserCredential> login(
+      {required String email, required String password}) async {
+    try {
+      final user =
+          auth.signInWithEmailAndPassword(email: email, password: password);
+      return user;
+    } on FirebaseAuthException {
+      throw Failure(message: "Firebase Authentication failed.");
+    } on SocketException {
+      throw Failure(message: "You're not connected to the internet. ");
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
   }
-  catch(e){
-    throw Failure(message: e.toString());
-  }
-}
 
-Future<void> resetPassword ({required String email}) async{
-  try{
-    return auth.sendPasswordResetEmail(email: email);
-  } on FirebaseAuthException{
-    throw Failure(message: "Firebase Authentication failed.");
-  } on SocketException{
-    throw Failure(message: "You're not connected to the internet. ");
+  Future<void> resetPassword({required String email}) async {
+    try {
+      return auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException {
+      throw Failure(message: "Firebase Authentication failed.");
+    } on SocketException {
+      throw Failure(message: "You're not connected to the internet. ");
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
   }
-  catch(e){
-    throw Failure(message: e.toString());
-  }
-}
 
 // Future<void> confirmResetPassword ({required String code, required String newPassword}) async{
 //   try{
@@ -60,19 +61,15 @@ Future<void> resetPassword ({required String email}) async{
 //   }
 // }
 
-  Future<void> deleteAccount () async{
-    try{
+  Future<void> deleteAccount() async {
+    try {
       return auth.currentUser?.delete();
-    } on FirebaseAuthException{
+    } on FirebaseAuthException {
       throw Failure(message: "Firebase Authentication failed.");
-    } on SocketException{
+    } on SocketException {
       throw Failure(message: "You're not connected to the internet. ");
-    }
-    catch(e){
+    } catch (e) {
       throw Failure(message: e.toString());
     }
   }
-
 }
-
-
