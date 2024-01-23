@@ -15,84 +15,92 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: const Color(0xFFEDE7DD),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                height: 360,
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/onboarding.jpg'),
-                    fit: BoxFit.cover,
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              height: 400,
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40),
+                ),
+                image: DecorationImage(
+                  image: AssetImage('assets/images/onboarding.jpg'),
+                  fit: BoxFit.cover,
                 ),
               ),
-              const Gap(30),
-              const Center(
-                child: Text(
-                  'Coffee has never',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 30,
-                    color: Colors.black,
-                  ),
+            ),
+            const Gap(40),
+            const Center(
+              child: Text(
+                'Coffee has never',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 30,
+                  color: Colors.black,
                 ),
               ),
-              const Center(
-                child: Text(
-                  'Seemed so Close!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 30,
-                    color: Colors.black,
-                  ),
+            ),
+            const Center(
+              child: Text(
+                'Seemed so Close!',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 30,
+                  color: Colors.black,
                 ),
               ),
-              const Gap(15),
-              const Center(
-                child: Text(
-                  'In less than a minute, \n order a cup coffee to your location.',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
+            ),
+            const Gap(10),
+            const Center(
+              child: Text(
+                'In less than a minute, \n order a cup coffee to your location.',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
                 ),
+                textAlign: TextAlign.center,
               ),
-              const Gap(30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => RegisterScreen()));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.brown)),
-                    child: const Text('Register'),
+            ),
+            const Gap(20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterScreen()));
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.brown)),
+                  child: const Text(
+                    'Register',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
-                  const Gap(24),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginScreen()));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.brown)),
-                    child: const Text("Login"),
-                  )
-                ],
-              )
-            ],
-          ),
+                ),
+                const Gap(24),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.brown)),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            )
+          ],
         ),
       ),
     );

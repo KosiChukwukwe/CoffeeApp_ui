@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:week6_tast_two/screens/check_out_screen.dart';
+import 'package:week6_tast_two/screens/widgets/coffee_card.dart';
+import 'package:week6_tast_two/utils/implementation/api_service.dart';
+import 'package:week6_tast_two/utils/model.dart';
 
 import '../logic/auth.dart';
 import 'onboarding_screen.dart';
@@ -20,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldState,
       drawer: menuBar(),
       body: Scrollbar(
-        thumbVisibility: true,
         trackVisibility: true,
         child: SafeArea(
           child: Padding(
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 150,
                     child: Image(
-                        image: AssetImage("assets/images/home.png"),
+                      image: AssetImage("assets/images/home.png"),
                     ),
                   ),
                   const Text(
@@ -61,135 +62,53 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const Gap(24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
-                      SizedBox(
-                        height: 160,
-                        width: 150,
-                        child: Card(
-                          child: Column(
-                            children: const [
-                              Image(
-                                image: AssetImage('assets/images/home1.png'),
-                                fit: BoxFit.cover,
-
-                              ),
-                              Gap(12),
-                              Padding(
-                                padding: EdgeInsets.all(4.0),
-                                child: Text('CAPPUCCINO',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16,
-                                    color: Colors.brown,
-                                  ),
-                                ),
-                              ),
-                            ],
+                  FutureBuilder<List<CoffeeType>>(
+                    future: getCoffeeType(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListView.builder(
+                                clipBehavior: Clip.none,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.length,
+                                itemBuilder: (BuildContext context, int i) {
+                                  return CoffeeCard(
+                                    coffeeType: snapshot.data![i],
+                                  );
+                                }));
+                      } else if (snapshot.hasError) {
+                        return Text("${snapshot.error}");
+                      }
+                      return const Column(
+                        children: [
+                          CircularProgressIndicator(
+                            color: Colors.brown,
+                            strokeWidth: 1.5,
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 160,
-                        width: 150,
-                        child: Card(
-                          child: Column(
-                            children: const [
-                              Image(
-                                image: AssetImage('assets/images/home2.png'),
-                                fit: BoxFit.cover,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(4.0),
-                                child: Text('CAFFÉ'
-                                    ' MOCHA',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16,
-                                    color: Colors.brown,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                        ],
+                      );
+                    },
                   ),
                   const Gap(10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
-                      SizedBox(
-                        height: 180,
-                        width: 150,
-                        child: Card(
-                          child: Column(
-                            children: const [
-                              Image(
-                                image: AssetImage('assets/images/home3.png'),
-                                fit: BoxFit.cover,
-                              ),
-                              Gap(20),
-                              Padding(
-                                padding: EdgeInsets.all(4.0),
-                                child: Text('ICED COFFEE',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16,
-                                    color: Colors.brown,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 180,
-                        width: 150,
-                        child: Card(
-                          child: Column(
-                            children: const [
-                              Image(
-                                image: AssetImage('assets/images/home4.png'),
-                                fit: BoxFit.cover
-                                ,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(2.0),
-                                child: Text('FRAPPUCCINO',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16,
-                                    color: Colors.brown,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                   const Gap(20),
-                  SizedBox(
-                    height: 55,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const CheckOutScreen()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.brown,
-                      ),
-
-                      child: const Text("Proceed To CheckOut"),
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 55,
+                  //   width: double.infinity,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (context) => const CheckOutScreen()));
+                  //     },
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: Colors.brown,
+                  //     ),
+                  //     child: const Text("Proceed To CheckOut"),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -198,28 +117,28 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-  Widget menuBar(){
+
+  Widget menuBar() {
     return Drawer(
       backgroundColor: Colors.white,
-      child: ListView(
-        children: [
-          const Gap(30),
-          ListTile(
-            leading: const Icon(
-              Icons.delete_forever,
-              color: Colors.brown,
-            ),
-            title: const Text('Delete Account'),
-            onTap: () async {
-              final auth = Auth();
-              auth.deleteAccount();
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const OnboardingScreen()));
-            },
+      child: ListView(children: [
+        const Gap(30),
+        ListTile(
+          leading: const Icon(
+            Icons.delete_forever,
+            color: Colors.brown,
           ),
-        ]
-      ),
+          title: const Text('Delete Account'),
+          onTap: () async {
+            final auth = Auth();
+            auth.deleteAccount();
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const OnboardingScreen()));
+          },
+        ),
+      ]),
     );
   }
 }
